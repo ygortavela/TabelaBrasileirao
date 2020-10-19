@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Sql(scripts = "/sql/insert-data-projection.sql")
 @Sql(scripts = "/sql/delete-data-projection.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 @SpringBootTest(classes = DemoApplication.class)
-public class TeamServicesIntegrationTest {
+public class PlayMatchServicesIntegrationTest {
     @Autowired
     private PlayMatchServices playMatchServices;
 
