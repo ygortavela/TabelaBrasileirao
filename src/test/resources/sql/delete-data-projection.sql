@@ -1,0 +1,3 @@
+DELETE FROM joga_jogo;
+DELETE FROM time;
+DELETE FROM jogo;
