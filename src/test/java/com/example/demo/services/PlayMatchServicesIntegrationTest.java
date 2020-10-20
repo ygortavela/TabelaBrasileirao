@@ -3,8 +3,6 @@ package com.example.demo.services;
 import com.example.demo.DemoApplication;
 import com.example.demo.dto.PlayMatchDTO;
 
-import com.example.demo.entity.PlayMatchEntity;
-import com.example.demo.exceptions.InvalidOperationException;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

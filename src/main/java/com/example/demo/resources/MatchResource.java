@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path="/demo")
+@RequestMapping(path="/championship")
 public class MatchResource {
     @Autowired
     private MatchServices matchService;
