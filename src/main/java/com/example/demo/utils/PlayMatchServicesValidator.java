@@ -1,4 +1,4 @@
-package com.example.demo.validators;
+package com.example.demo.utils;
 
 import com.example.demo.dto.PlayMatchDTO;
 import com.example.demo.entity.PlayMatchEntity;

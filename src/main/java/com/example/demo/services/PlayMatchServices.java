@@ -5,11 +5,10 @@ import com.example.demo.entity.PlayMatchEntity;
 import com.example.demo.dto.PlayMatchDTO;
 import com.example.demo.exceptions.InvalidOperationException;
 import com.example.demo.repository.PlayMatchRepository;
-import com.example.demo.validators.PlayMatchServicesValidator;
+import com.example.demo.utils.PlayMatchServicesValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;

@@ -1,11 +1,10 @@
-package com.example.demo.services;
+package com.example.demo.utils;
 
 import com.example.demo.dto.PlayMatchDTO;
 import com.example.demo.entity.MatchEntity;
 import com.example.demo.entity.PlayMatchEntity;
 import com.example.demo.entity.TeamEntity;
 import com.example.demo.exceptions.InvalidOperationException;
-import com.example.demo.validators.PlayMatchServicesValidator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -25,7 +24,7 @@ class PlayMatchServicesValidatorTest {
         // Given a list of relationships between team and match by matchId, with two teams which have been registered on a match
         TeamEntity teamOne = new TeamEntity(1, "Flamengo", "FLA");
         TeamEntity teamTwo = new TeamEntity(2, "Corinthians", "COR");
-        MatchEntity match = new MatchEntity(MATCH_ID, 1, LocalDateTime.parse("2020-10-01T10:30:00"), "Maracanâ");
+        MatchEntity match = new MatchEntity(MATCH_ID, 1, LocalDateTime.parse("2020-10-01T10:30:00"), "Maracanã");
 
         List<PlayMatchEntity> playMatchListByMatchId = new ArrayList<PlayMatchEntity>();
         playMatchListByMatchId.add(new PlayMatchEntity(1, teamOne, match, 3, 2, 0));
@@ -48,7 +47,7 @@ class PlayMatchServicesValidatorTest {
 
         // Given a list of relationships between team and match by matchId, with one team which has been registered on a match
         TeamEntity teamOne = new TeamEntity(TEAM_ID, "Flamengo", "FLA");
-        MatchEntity match = new MatchEntity(MATCH_ID, 1, LocalDateTime.parse("2020-10-01T10:30:00"), "Maracanâ");
+        MatchEntity match = new MatchEntity(MATCH_ID, 1, LocalDateTime.parse("2020-10-01T10:30:00"), "Maracanã");
 
         List<PlayMatchEntity> playMatchListByMatchId = new ArrayList<PlayMatchEntity>();
         playMatchListByMatchId.add(new PlayMatchEntity(1, teamOne, match, 3, 2, 0));
@@ -71,7 +70,7 @@ class PlayMatchServicesValidatorTest {
 
         // Given a list of relationships between team and match by matchId, with one team which has been registered on a match
         TeamEntity teamOne = new TeamEntity(TEAM_ONE_ID, "Flamengo", "FLA");
-        MatchEntity match = new MatchEntity(MATCH_ID, 1, LocalDateTime.parse("2020-10-01T10:30:00"), "Maracanâ");
+        MatchEntity match = new MatchEntity(MATCH_ID, 1, LocalDateTime.parse("2020-10-01T10:30:00"), "Maracanã");
 
         List<PlayMatchEntity> playMatchListByMatchId = new ArrayList<PlayMatchEntity>();
         playMatchListByMatchId.add(new PlayMatchEntity(1, teamOne, match, 3, 2, 0));
