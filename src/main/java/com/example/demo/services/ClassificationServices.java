@@ -114,7 +114,7 @@ public class ClassificationServices {
 
     private void setClassifiedTeamPointsAndPerformancePercentage(ClassifiedTeamDTO classifiedTeam) {
         int totalPoints = 3 * classifiedTeam.getWinAmount() + classifiedTeam.getTieAmount();
-        double performancePercentage = (totalPoints/(classifiedTeam.getMatchesAmount() * 3)) * 100;
+        double performancePercentage = classifiedTeam.getMatchesAmount() > 0 ? (totalPoints/(classifiedTeam.getMatchesAmount() * 3)) * 100 : 0;
 
         classifiedTeam.setPoints(totalPoints);
         classifiedTeam.setPerformancePercentage(performancePercentage);
@@ -127,7 +127,7 @@ public class ClassificationServices {
     }
 
     private List<ClassifiedTeamDTO> classifiedTeamsSortedByPointsList() {
-        List<ClassifiedTeamDTO> classifiedTeamList = new ArrayList<ClassifiedTeamDTO>(teamMapClassificationTableRow.values());
+        List<ClassifiedTeamDTO> classifiedTeamList = new ArrayList<>(teamMapClassificationTableRow.values());
 
         classifiedTeamList.sort(new ClassifiedTeamDTOComparator());
 

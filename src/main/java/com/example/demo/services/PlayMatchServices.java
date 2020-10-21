@@ -3,11 +3,13 @@ package com.example.demo.services;
 import com.example.demo.converters.PlayMatchConverter;
 import com.example.demo.entity.PlayMatchEntity;
 import com.example.demo.dto.PlayMatchDTO;
+import com.example.demo.exceptions.InvalidOperationException;
 import com.example.demo.repository.PlayMatchRepository;
 import com.example.demo.validators.PlayMatchServicesValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -46,14 +48,20 @@ public class PlayMatchServices {
     }
 
     public PlayMatchEntity replacePlayedMatch(PlayMatchDTO newPlayMatchDTO, Integer playMatchId) {
-        playMatchValidator(newPlayMatchDTO);
-
         PlayMatchEntity playMatch = this.findPlayedMatchById(playMatchId);
 
-        this.setTeamAndMatchEntityById(newPlayMatchDTO, playMatch);
-        playMatch.setGoalAmount(newPlayMatchDTO.getGoalAmount());
-        playMatch.setYellowCardAmount(newPlayMatchDTO.getYellowCardAmount());
-        playMatch.setRedCardAmount(newPlayMatchDTO.getRedCardAmount());
+        deletePlayedMatch(playMatchId);
+
+        try {
+            playMatchValidator(newPlayMatchDTO);
+
+            this.setTeamAndMatchEntityById(newPlayMatchDTO, playMatch);
+            playMatch.setGoalAmount(newPlayMatchDTO.getGoalAmount());
+            playMatch.setYellowCardAmount(newPlayMatchDTO.getYellowCardAmount());
+            playMatch.setRedCardAmount(newPlayMatchDTO.getRedCardAmount());
+        } catch (InvalidOperationException ex) {
+
+        }
 
         return playMatchRepository.save(playMatch);
     }
