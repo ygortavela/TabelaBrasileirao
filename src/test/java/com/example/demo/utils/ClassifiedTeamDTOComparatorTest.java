@@ -3,12 +3,9 @@ package com.example.demo.utils;
 import com.example.demo.dto.ClassifiedTeamDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//@ExtendWith(MockitoExtension.class)
 public class ClassifiedTeamDTOComparatorTest {
     ClassifiedTeamDTO classifiedTeamOne;
 
@@ -24,7 +21,7 @@ public class ClassifiedTeamDTOComparatorTest {
     }
 
     @Test
-    public void itShouldSortInDecreaseOrderTeamsSuchThatTeamOneIsBetterClassifiedBecauseItHasHigherPoints() {
+    public void itShouldCompareTeamsOrderSuchThatTeamOneIsBetterClassifiedBecauseItHasHigherPoints() {
         classifiedTeamTwo = new ClassifiedTeamDTO("Corinthians", 4, 3, 1, 1,
                 1, 4/9, 3, 0, 6, 1, 5);
 
@@ -34,7 +31,7 @@ public class ClassifiedTeamDTOComparatorTest {
     }
 
     @Test
-    public void itShouldSortInDecreaseOrderTeamsSuchThatTeamOneIsBetterClassifiedBecauseItHasHigherWinAmount() {
+    public void itShouldCompareTeamsOrderSuchThatTeamOneIsBetterClassifiedBecauseItHasHigherWinAmount() {
         classifiedTeamTwo = new ClassifiedTeamDTO("Corinthians", 7, 6, 1, 4,
                 1, 7/18, 3, 0, 6, 1, 5);
 
@@ -44,9 +41,9 @@ public class ClassifiedTeamDTOComparatorTest {
     }
 
     @Test
-    public void itShouldSortInDecreaseOrderTeamsSuchThatTeamOneIsBetterClassifiedBecauseItHasHigherGoalBalance() {
+    public void itShouldCompareTeamsOrderSuchThatTeamOneIsBetterClassifiedBecauseItHasHigherGoalBalance() {
         classifiedTeamTwo = new ClassifiedTeamDTO("Corinthians", 7, 4, 2, 1,
-                1, 7/18, 3, 0, 6, 2, 4);
+                1, 7/12, 3, 0, 6, 2, 4);
 
         int relativeSortPosition = classifiedTeamComparator.compare(classifiedTeamOne, classifiedTeamTwo);
 
@@ -54,9 +51,9 @@ public class ClassifiedTeamDTOComparatorTest {
     }
 
     @Test
-    public void itShouldSortInDecreaseOrderTeamsSuchThatTeamOneIsBetterClassifiedBecauseItHasHigherGoalAmount() {
+    public void itShouldCompareTeamsOrderSuchThatTeamOneIsBetterClassifiedBecauseItHasHigherGoalAmount() {
         classifiedTeamTwo = new ClassifiedTeamDTO("Corinthians", 7, 4, 2, 1,
-                1, 7/18, 3, 0, 5, 0, 5);
+                1, 7/12, 3, 0, 5, 0, 5);
 
         int relativeSortPosition = classifiedTeamComparator.compare(classifiedTeamOne, classifiedTeamTwo);
 
@@ -64,9 +61,9 @@ public class ClassifiedTeamDTOComparatorTest {
     }
 
     @Test
-    public void itShouldSortInDecreaseOrderTeamsSuchThatTeamOneIsBetterClassifiedBecauseItHasSmallerRedCardAmount() {
+    public void itShouldCompareTeamsOrderSuchThatTeamOneIsBetterClassifiedBecauseItHasSmallerRedCardAmount() {
         classifiedTeamTwo = new ClassifiedTeamDTO("Corinthians", 7, 4, 2, 1,
-                1, 7/18, 3, 1, 6, 1, 5);
+                1, 7/12, 3, 1, 6, 1, 5);
 
         int relativeSortPosition = classifiedTeamComparator.compare(classifiedTeamOne, classifiedTeamTwo);
 
@@ -74,9 +71,9 @@ public class ClassifiedTeamDTOComparatorTest {
     }
 
     @Test
-    public void itShouldSortInDecreaseOrderTeamsSuchThatTeamOneIsBetterClassifiedBecauseItHasSmallerYellowCardAmount() {
+    public void itShouldCompareTeamsOrderSuchThatTeamOneIsBetterClassifiedBecauseItHasSmallerYellowCardAmount() {
         classifiedTeamTwo = new ClassifiedTeamDTO("Corinthians", 7, 4, 2, 1,
-                1, 7/18, 6, 0, 6, 1, 5);
+                1, 7/12, 6, 0, 6, 1, 5);
 
         int relativeSortPosition = classifiedTeamComparator.compare(classifiedTeamOne, classifiedTeamTwo);
 
@@ -84,9 +81,9 @@ public class ClassifiedTeamDTOComparatorTest {
     }
 
     @Test
-    public void itShouldSortInDecreaseOrderTeamsSuchThatTeamOneHasEqualAspectsRelativeToTeamTwo() {
+    public void itShouldCompareTeamsOrderSuchThatTeamOneHasEqualAspectsRelativeToTeamTwo() {
         classifiedTeamTwo = new ClassifiedTeamDTO("Corinthians", 7, 4, 2, 1,
-                1, 7/18, 3, 0, 6, 1, 5);
+                1, 7/12, 3, 0, 6, 1, 5);
 
         int relativeSortPosition = classifiedTeamComparator.compare(classifiedTeamOne, classifiedTeamTwo);
 

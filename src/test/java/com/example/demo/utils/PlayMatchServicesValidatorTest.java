@@ -6,8 +6,6 @@ import com.example.demo.entity.PlayMatchEntity;
 import com.example.demo.entity.TeamEntity;
 import com.example.demo.exceptions.InvalidOperationException;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,7 +13,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(MockitoExtension.class)
 class PlayMatchServicesValidatorTest {
     @Test
     public void itShouldThrownInvalidOperationBecauseThereAreTwoTeamsOnTheSameMatchAlready() {
