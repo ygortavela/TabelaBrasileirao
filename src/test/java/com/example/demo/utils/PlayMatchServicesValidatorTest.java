@@ -25,7 +25,7 @@ class PlayMatchServicesValidatorTest {
 
         List<PlayMatchEntity> playMatchListByMatchId = new ArrayList<PlayMatchEntity>();
         playMatchListByMatchId.add(new PlayMatchEntity(1, teamOne, match, 3, 2, 0));
-        playMatchListByMatchId.add(new PlayMatchEntity(1, teamTwo, match, 3, 2, 0));
+        playMatchListByMatchId.add(new PlayMatchEntity(2, teamTwo, match, 3, 2, 0));
 
         // And a new team that is related with that match
         PlayMatchDTO playMatchDTO = new PlayMatchDTO(3, MATCH_ID, 3, 2, 0);

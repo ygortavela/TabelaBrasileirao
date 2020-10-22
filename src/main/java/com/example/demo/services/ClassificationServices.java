@@ -5,7 +5,6 @@ import com.example.demo.utils.ClassifiedTeamsTableBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -20,13 +19,13 @@ public class ClassificationServices {
     private List<ClassifiedTeamDTO> sortedClassificationTable() {
         ClassifiedTeamsTableBuilder classificationTable = buildClassificationTable();
 
-        return classificationTable.classifiedTeamsSortedByComparatorRules();
+        return classificationTable.listTeamsSortedByComparatorRules();
     }
 
     private ClassifiedTeamsTableBuilder buildClassificationTable() {
         ClassifiedTeamsTableBuilder classificationTable = new ClassifiedTeamsTableBuilder(playMatchServices.findAllPlayedMatches());
 
-        classificationTable.setTeamGoalAndMatchStatusForEachMatch();
+        classificationTable.setTeamGoalAndMatchResultForEachMatch();
         classificationTable.setDerivedFieldsForEachClassifiedTeam();
 
         return classificationTable;

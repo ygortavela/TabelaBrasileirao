@@ -13,8 +13,8 @@ public class ClassifiedTeamsTableBuilder {
     private HashMap<Integer, List<PlayMatchEntity>> matchMapTeamsWhichPlayedMatch;
 
     public ClassifiedTeamsTableBuilder(Iterable<PlayMatchEntity> playMatchEntitiesList) {
-        this.teamMapClassificationTableRow = new HashMap<>();
-        this.matchMapTeamsWhichPlayedMatch = new HashMap<>();
+        teamMapClassificationTableRow = new HashMap<>();
+        matchMapTeamsWhichPlayedMatch = new HashMap<>();
 
         for (PlayMatchEntity playMatchEntity : playMatchEntitiesList) {
             mapMatchIdToPlayMatchEntity(playMatchEntity);
@@ -54,7 +54,7 @@ public class ClassifiedTeamsTableBuilder {
         }
     }
 
-    public void setTeamGoalAndMatchStatusForEachMatch() {
+    public void setTeamGoalAndMatchResultForEachMatch() {
         matchMapTeamsWhichPlayedMatch.forEach((key, value) -> {
             PlayMatchEntity teamOnePlayMatch = value.get(0);
             PlayMatchEntity teamTwoPlayMatch = value.get(1);
@@ -107,10 +107,16 @@ public class ClassifiedTeamsTableBuilder {
         classifiedTeam.setGoalBalance(goalBalance);
     }
 
-    public List<ClassifiedTeamDTO> classifiedTeamsSortedByComparatorRules() {
-        List<ClassifiedTeamDTO> classifiedTeamList = new ArrayList<>(teamMapClassificationTableRow.values());
+    public List<ClassifiedTeamDTO> listTeamsSortedByComparatorRules() {
+        List<ClassifiedTeamDTO> classifiedTeamList = listTeams();
 
         classifiedTeamList.sort(new ClassifiedTeamDTOComparator());
+
+        return classifiedTeamList;
+    }
+
+    public List<ClassifiedTeamDTO> listTeams() {
+        List<ClassifiedTeamDTO> classifiedTeamList = new ArrayList<>(teamMapClassificationTableRow.values());
 
         return classifiedTeamList;
     }
