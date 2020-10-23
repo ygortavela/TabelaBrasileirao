@@ -3,6 +3,7 @@ package com.example.demo.utils;
 import com.example.demo.dto.ClassifiedTeamDTO;
 import com.example.demo.entity.PlayMatchEntity;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -95,10 +96,17 @@ public class ClassifiedTeamsTableBuilder {
 
     private void setClassifiedTeamPointsAndPerformancePercentage(ClassifiedTeamDTO classifiedTeam) {
         int totalPoints = 3 * classifiedTeam.getWinAmount() + classifiedTeam.getTieAmount();
-        double performancePercentage = classifiedTeam.getMatchesAmount() > 0 ? (totalPoints/(classifiedTeam.getMatchesAmount() * 3)) * 100 : 0;
+        double performancePercentage;
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        if (classifiedTeam.getMatchesAmount() > 0)
+            performancePercentage = (totalPoints/(3.0 * classifiedTeam.getMatchesAmount())) * 100.0;
+        else
+            performancePercentage = 0;
+
 
         classifiedTeam.setPoints(totalPoints);
-        classifiedTeam.setPerformancePercentage(performancePercentage);
+        classifiedTeam.setPerformancePercentage(Double.valueOf(df.format(performancePercentage)));
     }
 
     private void setClassifiedTeamGoalBalance(ClassifiedTeamDTO classifiedTeam) {

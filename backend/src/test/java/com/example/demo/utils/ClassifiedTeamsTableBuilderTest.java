@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,7 @@ public class ClassifiedTeamsTableBuilderTest {
     @Test
     public void itShouldSetDerivedFieldsCorrectlyAfterSetTeamAndMatchResult() {
         List<ClassifiedTeamDTO> classifiedTeamList;
+        DecimalFormat df = new DecimalFormat("#.##");
 
         classificationTable.setTeamGoalAndMatchResultForEachMatch();
         classificationTable.setDerivedFieldsForEachClassifiedTeam();
@@ -66,8 +68,8 @@ public class ClassifiedTeamsTableBuilderTest {
         assertEquals(classifiedTeamList.get(1).getMatchesAmount(), 2);
         assertEquals(classifiedTeamList.get(0).getPoints(), 4);
         assertEquals(classifiedTeamList.get(1).getPoints(), 1);
-        assertEquals(classifiedTeamList.get(0).getPerformancePercentage(), 4/6);
-        assertEquals(classifiedTeamList.get(1).getPerformancePercentage(), 1/6);
+        assertEquals(classifiedTeamList.get(0).getPerformancePercentage(), Double.valueOf(df.format(100.0*(4.0/6.0))));
+        assertEquals(classifiedTeamList.get(1).getPerformancePercentage(), Double.valueOf(df.format(100.0*(1.0/6.0))));
         assertEquals(classifiedTeamList.get(0).getGoalBalance(), 3);
         assertEquals(classifiedTeamList.get(1).getGoalBalance(), -3);
     }
