@@ -4,7 +4,7 @@ import ClassificationTable from './components/ClassificationTable';
 
 function App() {
     return (
-        <div id="app" className="w-screen h-screen p-16">
+        <div id="app" className="w-screen h-screen p-8">
             <ClassificationTable />
         </div>
     );

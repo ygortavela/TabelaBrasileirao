@@ -22,9 +22,11 @@ const ClassificationTable: React.FC = () => {
     return (
         <table className="table-auto">
             <TableHeader />
-            {tableData.map((row, index) => {
-                return <TableRow rowData={row} classification={index + 1} />;
-            })}
+            <tbody className="divide-y">
+                {tableData.map((row, index) => {
+                    return <TableRow rowData={row} classification={index + 1} />;
+                })}
+            </tbody>
         </table>
     );
 };
