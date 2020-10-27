@@ -97,7 +97,7 @@ public class ClassifiedTeamsTableBuilder {
     private void setClassifiedTeamPointsAndPerformancePercentage(ClassifiedTeamDTO classifiedTeam) {
         int totalPoints = 3 * classifiedTeam.getWinAmount() + classifiedTeam.getTieAmount();
         double performancePercentage;
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("#.#");
 
         if (classifiedTeam.getMatchesAmount() > 0)
             performancePercentage = (totalPoints/(3.0 * classifiedTeam.getMatchesAmount())) * 100.0;

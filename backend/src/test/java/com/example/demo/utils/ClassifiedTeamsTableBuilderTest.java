@@ -58,7 +58,7 @@ public class ClassifiedTeamsTableBuilderTest {
     @Test
     public void itShouldSetDerivedFieldsCorrectlyAfterSetTeamAndMatchResult() {
         List<ClassifiedTeamDTO> classifiedTeamList;
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("#.#");
 
         classificationTable.setTeamGoalAndMatchResultForEachMatch();
         classificationTable.setDerivedFieldsForEachClassifiedTeam();
