@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import TableHeader from './TableHeader';
-import getClassificationService from '../services/classificationTableService';
+import { getClassificationTable } from '../services/specialized-services';
 import TableRow from './TableRow';
 
 const ClassificationTable: React.FC = () => {
@@ -8,7 +8,7 @@ const ClassificationTable: React.FC = () => {
 
     async function getTableData() {
         try {
-            const response = await getClassificationService();
+            const response = await getClassificationTable();
             setTableData(response.data);
         } catch (error) {
             console.log(error);
@@ -20,20 +20,23 @@ const ClassificationTable: React.FC = () => {
     }, []);
 
     return (
-        <table className="table-auto">
-            <TableHeader />
-            <tbody className="divide-y">
-                {tableData.map((row, index) => {
-                    return <TableRow rowData={row} classification={index + 1} />;
-                })}
-            </tbody>
-        </table>
+        <div className="m-4 w-1/2">
+            <p className="text-2xl font-black mb-4">TABELA</p>
+            <table className="table-auto">
+                <TableHeader />
+                <tbody className="divide-y">
+                    {tableData.map((row, index) => {
+                        return <TableRow key={row.teamName} rowData={row} classification={index + 1} />;
+                    })}
+                </tbody>
+            </table>
+        </div>
     );
 };
 
 export default ClassificationTable;
 
-export interface RowData {
+export type RowData = {
     teamName: string;
     points: number;
     matchesAmount: number;
@@ -44,4 +47,4 @@ export interface RowData {
     negativeGoalAmount: number;
     goalBalance: number;
     performancePercentage: number;
-}
+};
