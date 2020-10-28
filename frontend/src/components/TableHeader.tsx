@@ -3,7 +3,7 @@ import React from 'react';
 const TableHeader: React.FC = () => {
     return (
         <thead>
-            <tr className="border-t border-b text-sm text-gray-300 uppercase tracking-tighter">
+            <tr className="border-t border-b text-sm text-gray-500 uppercase tracking-tighter">
                 <th className="px-4 py-2 text-left w-64">CLASSIFICAÇÃO</th>
                 <th className="px-4 py-2">P</th>
                 <th className="px-4 py-2">J</th>

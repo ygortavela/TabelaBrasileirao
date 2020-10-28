@@ -20,7 +20,7 @@ const ClassificationTable: React.FC = () => {
     }, []);
 
     return (
-        <div className="m-4 w-1/2">
+        <div className="m-4">
             <p className="text-2xl font-black mb-4">TABELA</p>
             <table className="table-auto">
                 <TableHeader />

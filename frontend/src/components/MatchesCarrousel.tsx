@@ -20,7 +20,7 @@ const MatchesByRoundCarrousel: React.FC = () => {
     }, []);
 
     return (
-        <div className="m-4 w-1/2 flex flex-col">
+        <div className="m-4 w-1/3 flex flex-col">
             <p className="text-2xl font-black mb-4">JOGOS</p>
             <div className="flex justify-around items-center py-2 border-t border-b">
                 <button
