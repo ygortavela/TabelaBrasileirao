@@ -28,6 +28,7 @@ public class MatchesByRoundMapBuilder {
         int matchId = playMatchEntity.getMatch().getMatchId();
         MatchDTO matchDTO = teamsThatPlayedMatchByMatchId.get(matchId);
         TeamDTO teamDTO = modelMapper.map(playMatchEntity.getTeam(), TeamDTO.class);
+        teamDTO.setGoalAmount(playMatchEntity.getGoalAmount());
 
         if (matchDTO == null) {
             matchDTO = modelMapper.map(playMatchEntity.getMatch(), MatchDTO.class);

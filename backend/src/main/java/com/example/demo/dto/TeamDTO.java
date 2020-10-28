@@ -9,4 +9,6 @@ public class TeamDTO {
     private String name;
 
     private String initials;
+
+    private Integer goalAmount;
 }
