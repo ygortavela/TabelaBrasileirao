@@ -6,9 +6,15 @@ import lombok.Data;
 public class TeamDTO {
     private Integer teamId;
 
+    private Integer playMatchId;
+
     private String name;
 
     private String initials;
 
     private Integer goalAmount;
+
+    private Integer yellowCardAmount;
+
+    private Integer redCardAmount;
 }
