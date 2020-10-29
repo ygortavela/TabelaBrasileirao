@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { MatchData } from './MatchesCarrousel';
+import React, { useState } from 'react';
 
 type Props = {
-    match: MatchData;
+    match: Match;
 };
 
 const MatchItem: React.FC<Props> = ({ match }) => {
@@ -18,10 +17,8 @@ const MatchItem: React.FC<Props> = ({ match }) => {
 
     const WEEKDAY = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
 
-    useEffect(() => console.log(match));
-
     return (
-        <div className="flex flex-col items-center py-4 my-2 border-b">
+        <li className="flex flex-col items-center py-4 my-2 border-b">
             <div className="text-sm">
                 <span className="font-bold">
                     {`${WEEKDAY[date.getDay()]} ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} `}
@@ -35,7 +32,7 @@ const MatchItem: React.FC<Props> = ({ match }) => {
                 <span className="text-2xl mx-2 font-black">{match.teamsThatPlayedMatchList[1].goalAmount}</span>
                 <span title={match.teamsThatPlayedMatchList[1].name}>{match.teamsThatPlayedMatchList[1].initials}</span>
             </div>
-        </div>
+        </li>
     );
 };
 

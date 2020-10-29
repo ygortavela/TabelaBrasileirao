@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getMatchesByRoundList } from '../services/specialized-services';
+import { getMatchesByRoundList } from '../services/services';
 import MatchesByRound from './MatchesByRound';
 
 const MatchesByRoundCarrousel: React.FC = () => {
-    const [matchesByRound, setMatchesByRound] = useState<Record<number, MatchData[]>>({});
+    const [matchesByRound, setMatchesByRound] = useState<Record<number, Match[]>>({});
     const [round, setRound] = useState(1);
 
     async function getMatchesByRound() {
@@ -29,7 +29,10 @@ const MatchesByRoundCarrousel: React.FC = () => {
                         if (round > 1) setRound(round - 1);
                     }}
                 >
-                    <img src={require('../assets/icons/navigate_before-24px.svg')} alt="" />
+                    <svg className={`w-6 h-6 text-gray-900 ${round === 1 ? 'hidden' : ''}`}>
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                    </svg>
                 </button>
                 <span className="font-bold">{round}ª RODADA</span>
                 <button
@@ -38,7 +41,14 @@ const MatchesByRoundCarrousel: React.FC = () => {
                         if (round < Object.keys(matchesByRound).length) setRound(round + 1);
                     }}
                 >
-                    <img src={require('../assets/icons/navigate_next-24px.svg')} alt="" />
+                    <svg
+                        className={`w-6 h-6 text-gray-900 ${
+                            round === Object.keys(matchesByRound).length ? 'hidden' : ''
+                        }`}
+                    >
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                    </svg>
                 </button>
             </div>
             <MatchesByRound key={round} matchesByRound={matchesByRound[round] ?? []} />
@@ -47,18 +57,3 @@ const MatchesByRoundCarrousel: React.FC = () => {
 };
 
 export default MatchesByRoundCarrousel;
-
-type Team = {
-    teamId: number;
-    name: string;
-    initials: string;
-    goalAmount: number;
-};
-
-export type MatchData = {
-    matchId: number;
-    round: number;
-    matchDateTime: number[];
-    matchPlace: string;
-    teamsThatPlayedMatchList: [Team, Team];
-};

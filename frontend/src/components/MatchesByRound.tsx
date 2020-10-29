@@ -1,18 +1,17 @@
 import React from 'react';
-import { MatchData } from './MatchesCarrousel';
 import MatchItem from './MatchItem';
 
 type Props = {
-    matchesByRound: MatchData[];
+    matchesByRound: Match[];
 };
 
 const MatchesByRound: React.FC<Props> = ({ matchesByRound }) => {
     return (
-        <div className="flex flex-col">
+        <ul className="flex flex-col">
             {matchesByRound.map((match) => (
                 <MatchItem key={match.matchId} match={match} />
             ))}
-        </div>
+        </ul>
     );
 };
 

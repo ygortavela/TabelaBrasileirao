@@ -4,7 +4,7 @@ import MatchesCarrousel from '../components/MatchesCarrousel';
 
 const Home: React.FC = () => {
     return (
-        <section className="flex justify-around">
+        <section className="flex-grow flex justify-around overflow-y-auto">
             <ClassificationTable />
             <MatchesCarrousel />
         </section>

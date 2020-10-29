@@ -1,8 +1,7 @@
 import React from 'react';
-import { RowData } from './ClassificationTable';
 
 type Props = {
-    rowData: RowData;
+    rowData: ClassificationRow;
     classification: number;
 };
 

@@ -8,4 +8,8 @@ const getMatchesByRoundList = () => {
     return apiClient.get('/matches-by-round');
 };
 
-export { getClassificationTable, getMatchesByRoundList };
+const getTeams = () => {
+    return apiClient.get('/team');
+};
+
+export { getClassificationTable, getMatchesByRoundList, getTeams };

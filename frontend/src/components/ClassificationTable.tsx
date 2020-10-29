@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import TableHeader from './TableHeader';
-import { getClassificationTable } from '../services/specialized-services';
+import { getClassificationTable } from '../services/services';
 import TableRow from './TableRow';
 
 const ClassificationTable: React.FC = () => {
-    const [tableData, setTableData] = useState<RowData[]>([]);
+    const [tableData, setTableData] = useState<ClassificationRow[]>([]);
 
     async function getTableData() {
         try {
@@ -35,16 +35,3 @@ const ClassificationTable: React.FC = () => {
 };
 
 export default ClassificationTable;
-
-export type RowData = {
-    teamName: string;
-    points: number;
-    matchesAmount: number;
-    winAmount: number;
-    tieAmount: number;
-    loseAmount: number;
-    goalAmount: number;
-    negativeGoalAmount: number;
-    goalBalance: number;
-    performancePercentage: number;
-};
