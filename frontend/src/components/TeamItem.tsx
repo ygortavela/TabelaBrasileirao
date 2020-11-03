@@ -1,14 +1,23 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { selectTeam, toggleFormType } from '../store/teamForm/actions';
 
 type Props = {
     team: Team;
 };
 
 const TeamItem: React.FC<Props> = ({ team }) => {
+    const dispatch = useDispatch();
+
+    const handleTeamEdit = () => {
+        dispatch(toggleFormType('EDIT'));
+        dispatch(selectTeam(team));
+    };
+
     return (
         <li className="bg-gray-300 rounded-md px-4 py-2 m-2 text-lg font-bold text-gray-600 flex justify-between items-center">
             <div>{`${team.name} (${team.initials})`}</div>
-            <button className="focus:outline-none">
+            <button className="focus:outline-none" onClick={handleTeamEdit}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"

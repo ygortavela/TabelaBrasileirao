@@ -1,23 +1,27 @@
 import React from 'react';
-import useForm from '../hooks/useForm';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTeam } from '../store/teamForm/actions';
+
+import { TeamFormState } from '../store/teamForm/types';
 
 type Props = {
-    type: 'EDIT' | 'CREATE' | '';
+    type: 'EDIT' | 'CREATE' | null;
 };
 
 const TeamForm: React.FC<Props> = (props) => {
-    const initialTeamState = { name: '', initials: '' };
-    const [{ values, loading }, handleInputChange, handleSubmit] = useForm(initialTeamState);
+    const selectedTeam = useSelector((state: TeamFormState) => state.selectedTeam);
+    const dispatch = useDispatch();
 
-    const submitNewTeam = () => {
-        let promise = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve('done');
-                alert('terminei');
-            }, 5000);
-        });
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const tempData = { ...selectedTeam } as Pick<Team, any>;
+        tempData[event.target.name] = event.target.value;
 
-        promise.then().catch((e) => console.log(e));
+        dispatch(selectTeam(tempData as Team));
+    };
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log(selectedTeam);
     };
 
     if (!props.type) return null;
@@ -25,7 +29,7 @@ const TeamForm: React.FC<Props> = (props) => {
     return (
         <form
             className="bg-gray-100 flex flex-col justify-between p-3 mx-4 my-6 shadow-lg rounded-sm flex-grow"
-            onSubmit={handleSubmit(submitNewTeam)}
+            onSubmit={handleSubmit}
         >
             <div className="flex flex-col">
                 <p className="mb-4 text-2xl font-black uppercase self-center">{`${
@@ -35,11 +39,11 @@ const TeamForm: React.FC<Props> = (props) => {
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                         Nome
                         <input
-                            className="text-base appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="text-base appearance-none w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
                             name="name"
                             type="text"
                             placeholder="Corinthians"
-                            value={values.name}
+                            value={selectedTeam.name}
                             onChange={handleInputChange}
                             onKeyPress={(e) => {
                                 if (e.key === 'Enter') e.preventDefault();
@@ -49,11 +53,11 @@ const TeamForm: React.FC<Props> = (props) => {
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-4 mb-2">
                         Sigla
                         <input
-                            className="text-base appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="text-base appearance-none w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
                             name="initials"
                             type="text"
                             placeholder="COR"
-                            value={values.initials}
+                            value={selectedTeam.initials}
                             onChange={handleInputChange}
                         />
                     </label>
@@ -61,9 +65,8 @@ const TeamForm: React.FC<Props> = (props) => {
             </div>
             <div className="flex justify-center">
                 <button
-                    className="self-center m-3 px-4 py-2 rounded-md text-lg font-black text-black hover:text-white bg-green-500 transform hover:scale-105"
+                    className="self-center m-3 px-4 py-2 rounded-md text-xl font-black text-green-200 hover:text-white bg-green-500 transform hover:scale-105 hover:font-black"
                     type="submit"
-                    disabled={loading}
                 >
                     Enviar
                 </button>

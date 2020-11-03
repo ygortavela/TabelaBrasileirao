@@ -21,21 +21,10 @@ interface Match {
 
 interface Team {
     teamId: number;
-    playMatchId: number;
     name: string;
     initials: string;
-    goalAmount: number;
-    yellowCardAmount: number;
-    redCardAmount: number;
+    playMatchId?: number;
+    goalAmount?: number;
+    yellowCardAmount?: number;
+    redCardAmount?: number;
 }
-
-type TeamState = {
-    team: Team;
-};
-
-type TeamAction = {
-    type: string;
-    team: Team;
-};
-
-type DispatchType = (args: TeamAction) => TeamAction;
