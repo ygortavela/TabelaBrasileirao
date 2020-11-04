@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { selectTeam, toggleFormType } from '../store/teamForm/actions';
+import { selectTeam, toggleFormType } from '../store/teams/actions';
 
 type Props = {
     team: Team;

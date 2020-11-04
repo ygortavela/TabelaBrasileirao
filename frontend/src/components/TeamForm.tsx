@@ -1,15 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTeam } from '../store/teamForm/actions';
+import { addTeam, removeTeam, selectTeam, toggleFormType } from '../store/teams/actions';
 
-import { TeamFormState } from '../store/teamForm/types';
+import { postTeam, replaceTeam, deleteTeam } from '../services/services';
+import { TeamState } from '../store/teams/types';
 
 type Props = {
     type: 'EDIT' | 'CREATE' | null;
 };
 
 const TeamForm: React.FC<Props> = (props) => {
-    const selectedTeam = useSelector((state: TeamFormState) => state.selectedTeam);
+    const selectedTeam = useSelector((state: TeamState) => state.selectedTeam);
     const dispatch = useDispatch();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,9 +20,31 @@ const TeamForm: React.FC<Props> = (props) => {
         dispatch(selectTeam(tempData as Team));
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(selectedTeam);
+
+        try {
+            if (props.type === 'CREATE') {
+                const response = await postTeam(selectedTeam);
+                dispatch(addTeam(response.data));
+            } else if (props.type === 'EDIT') {
+                await replaceTeam(selectedTeam);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+        dispatch(toggleFormType());
+    };
+
+    const handleDelete = async () => {
+        try {
+            await deleteTeam(selectedTeam.teamId);
+            dispatch(removeTeam(selectedTeam.teamId));
+            dispatch(toggleFormType());
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     if (!props.type) return null;
@@ -71,7 +94,11 @@ const TeamForm: React.FC<Props> = (props) => {
                     Enviar
                 </button>
                 {props.type === 'EDIT' && (
-                    <button className="self-center m-3 px-4 py-2 rounded-md text-lg font-black text-red-500 border-2 border-red-400 bg-gray-100 hover:bg-red-300 hover:text-white">
+                    <button
+                        className="self-center m-3 px-4 py-2 rounded-md text-lg font-black text-red-500 border-2 border-red-400 bg-gray-100 hover:bg-red-300 hover:text-white"
+                        type="button"
+                        onClick={handleDelete}
+                    >
                         Excluir
                     </button>
                 )}

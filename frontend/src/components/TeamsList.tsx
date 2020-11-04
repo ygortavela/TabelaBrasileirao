@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import TeamItem from './TeamItem';
-import { getTeams } from '../services/services';
-import { useDispatch } from 'react-redux';
-import { selectTeam, toggleFormType } from '../store/teamForm/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTeam, toggleFormType } from '../store/teams/actions';
+import { TeamState } from '../store/teams/types';
+import fetchTeams from '../store/teams/fetchTeams';
 
 const TeamsList: React.FC = () => {
-    const [teamsData, setTeamsData] = useState<Team[]>([]);
+    const teamState = useSelector((state: TeamState) => state);
     const dispatch = useDispatch();
-
-    async function getTableData() {
-        try {
-            const response = await getTeams();
-            setTeamsData(response.data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     const handleTeamCreate = () => {
         dispatch(toggleFormType('CREATE'));
@@ -23,8 +15,8 @@ const TeamsList: React.FC = () => {
     };
 
     useEffect(() => {
-        getTableData();
-    }, []);
+        dispatch(fetchTeams());
+    }, [dispatch]);
 
     return (
         <div
@@ -33,7 +25,7 @@ const TeamsList: React.FC = () => {
         >
             <div className="overflow-y-auto">
                 <ul>
-                    {teamsData.map((team) => (
+                    {teamState.teams.map((team) => (
                         <TeamItem team={team} key={team.teamId} />
                     ))}
                 </ul>

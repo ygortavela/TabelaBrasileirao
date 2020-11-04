@@ -1,5 +1,5 @@
-import { teamFormReducer } from './teamForm/reducers';
+import { teamReducer } from './teams/reducers';
 
-const rootReducer = teamFormReducer;
+const rootReducer = teamReducer;
 
 export default rootReducer;

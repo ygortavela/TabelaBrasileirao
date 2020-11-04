@@ -12,4 +12,16 @@ const getTeams = () => {
     return apiClient.get('/team');
 };
 
-export { getClassificationTable, getMatchesByRoundList, getTeams };
+const postTeam = (data: Team) => {
+    return apiClient.post('/team', data);
+};
+
+const replaceTeam = (data: Team) => {
+    return apiClient.put(`/team/${data.teamId}`, data);
+};
+
+const deleteTeam = (teamId: number) => {
+    return apiClient.delete(`/team/${teamId}`);
+};
+
+export { getClassificationTable, getMatchesByRoundList, getTeams, postTeam, replaceTeam, deleteTeam };

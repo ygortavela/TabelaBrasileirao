@@ -2,10 +2,10 @@ import React from 'react';
 import TeamsList from '../components/TeamsList';
 import TeamForm from '../components/TeamForm';
 import { useSelector } from 'react-redux';
-import { TeamFormState } from '../store/teamForm/types';
+import { TeamState } from '../store/teams/types';
 
 const Teams: React.FC = () => {
-    const formType = useSelector((state: TeamFormState) => state.formType);
+    const formType = useSelector((state: TeamState) => state.formType);
 
     return (
         <section className="flex-grow flex overflow-y-hidden">
