@@ -1,3 +1,25 @@
+create table jogo (
+	id_jogo serial not null primary key,
+	rodada int not null,
+	data_horario timestamp not null,
+	local_jogo varchar(256) not null
+);
+
+create table time (
+	id_time serial not null primary key,
+	nome varchar(256) not null,
+	sigla varchar(3) not null
+);
+
+create table joga_jogo (
+	id_joga_jogo serial not null primary key,
+	id_time int not null references time on delete cascade,
+	id_jogo int not null references jogo on delete cascade,
+	qtd_gols int not null,
+	qtd_cartao_amarelo int not null,
+	qtd_cartao_vermelho int not null
+)
+
 INSERT INTO time(id_time, nome, sigla) VALUES (1, 'Flamengo', 'FLA');
 INSERT INTO time(id_time, nome, sigla) VALUES (2, 'Corinthians', 'COR');
 INSERT INTO time(id_time, nome, sigla) VALUES (3, 'Internacional', 'INT');
@@ -127,3 +149,9 @@ INSERT INTO joga_jogo(id_joga_jogo, id_time, id_jogo, qtd_gols, qtd_cartao_amare
   VALUES (35, 16, 18, 2, 2, 0);
 INSERT INTO joga_jogo(id_joga_jogo, id_time, id_jogo, qtd_gols, qtd_cartao_amarelo, qtd_cartao_vermelho)
   VALUES (36, 12, 18, 0, 3, 1);
+
+begin;
+select setval(pg_get_serial_sequence('time', 'id_time'), coalesce(max("id_time"), 1), max("id_time") is not null) from time;
+select setval(pg_get_serial_sequence('jogo', 'id_jogo'), coalesce(max("id_jogo"), 1), max("id_jogo") is not null) from jogo;
+select setval(pg_get_serial_sequence('joga_jogo', 'id_joga_jogo'), coalesce(max("id_joga_jogo"), 1), max("id_joga_jogo") is not null) from joga_jogo;
+commit;

@@ -21,6 +21,8 @@ public class TeamServices {
     }
 
     public TeamEntity saveTeam(TeamEntity newTeam) {
+        newTeam.setInitials(newTeam.getInitials().toUpperCase());
+
         return teamRepository.save(newTeam);
     }
 
@@ -28,7 +30,7 @@ public class TeamServices {
         TeamEntity team = this.findTeamById(teamId);
 
         team.setName(newTeam.getName());
-        team.setInitials(newTeam.getInitials());
+        team.setInitials(newTeam.getInitials().toUpperCase());
 
         return this.saveTeam(team);
     }
