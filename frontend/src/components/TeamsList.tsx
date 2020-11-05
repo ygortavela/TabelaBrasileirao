@@ -2,16 +2,16 @@ import React, { useEffect } from 'react';
 import TeamItem from './TeamItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTeam, toggleFormType } from '../store/teams/actions';
-import { TeamState } from '../store/teams/types';
 import fetchTeams from '../store/teams/fetchTeams';
+import { RootState } from '../store/reducer';
 
 const TeamsList: React.FC = () => {
-    const teamState = useSelector((state: TeamState) => state);
+    const teamState = useSelector((state: RootState) => state.teamState.teams);
     const dispatch = useDispatch();
 
     const handleTeamCreate = () => {
         dispatch(toggleFormType('CREATE'));
-        dispatch(selectTeam({ teamId: 0, name: '', initials: '' }));
+        dispatch(selectTeam({ teamId: -1, name: '', initials: '' }));
     };
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const TeamsList: React.FC = () => {
         >
             <div className="overflow-y-auto">
                 <ul>
-                    {teamState.teams.map((team) => (
+                    {teamState.map((team) => (
                         <TeamItem team={team} key={team.teamId} />
                     ))}
                 </ul>

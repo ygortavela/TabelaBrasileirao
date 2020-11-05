@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addTeam, removeTeam, selectTeam, toggleFormType } from '../store/teams/actions';
 
 import { postTeam, replaceTeam, deleteTeam } from '../services/services';
-import { TeamState } from '../store/teams/types';
+import { RootState } from '../store/reducer';
 
 type Props = {
     type: 'EDIT' | 'CREATE' | null;
 };
 
 const TeamForm: React.FC<Props> = (props) => {
-    const selectedTeam = useSelector((state: TeamState) => state.selectedTeam);
+    const selectedTeam = useSelector((state: RootState) => state.teamState.selectedTeam);
     const dispatch = useDispatch();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +57,7 @@ const TeamForm: React.FC<Props> = (props) => {
             <div className="flex flex-col">
                 <p className="mb-4 text-2xl font-black uppercase self-center">{`${
                     props.type === 'CREATE' ? 'Criação' : 'Edição'
-                } de Times`}</p>
+                } de Time`}</p>
                 <div className="w-1/2 px-3 flex flex-col">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                         Nome

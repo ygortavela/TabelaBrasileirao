@@ -16,7 +16,7 @@ interface Match {
     round: number;
     matchDateTime: number[];
     matchPlace: string;
-    teamsThatPlayedMatchList: [Team, Team];
+    teamsThatPlayedMatchList?: [Team, Team];
 }
 
 interface Team {

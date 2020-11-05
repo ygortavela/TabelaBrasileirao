@@ -11,6 +11,7 @@
         "@types/node": "^12.19.1",
         "@types/react": "^16.9.53",
         "@types/react-dom": "^16.9.8",
+        "lodash": "^4.17.20",
         "node-sass": "^4.14.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
@@ -52,6 +53,7 @@
         ]
     },
     "devDependencies": {
+        "@types/lodash": "^4.14.164",
         "@types/react-redux": "^7.1.10",
         "@types/react-router-dom": "^5.1.6",
         "@types/redux": "^3.6.0",
@@ -65,6 +67,7 @@
         "eslint-plugin-react": "^7.21.5",
         "postcss-cli": "^8.1.0",
         "prettier": "^2.1.2",
+        "redux-devtools-extension": "^2.13.8",
         "tailwindcss": "^1.9.5"
     }
 }

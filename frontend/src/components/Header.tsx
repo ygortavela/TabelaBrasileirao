@@ -55,10 +55,10 @@ const Header: React.FC = () => {
                                     setSelected('management');
                                     setToggleDropdown(false);
                                 }}
-                                to="/management"
+                                to="/management/matches"
                                 className="block px-4 py-2 text-gray-800 hover:bg-green-500 hover:text-white"
                             >
-                                Jogos
+                                Partidas
                             </Link>
                         </div>
                     )}

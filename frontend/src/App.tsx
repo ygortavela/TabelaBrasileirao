@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Teams from './pages/Teams';
+import Matches from './pages/Matches';
 
 import './App.css';
 import Header from './components/Header';
@@ -15,11 +16,11 @@ function App() {
                     <Route exact path="/">
                         <Home />
                     </Route>
-                    <Route exact path="/management">
-                        TO DO
-                    </Route>
                     <Route exact path="/management/teams">
                         <Teams />
+                    </Route>
+                    <Route exact path="/management/matches">
+                        <Matches />
                     </Route>
                 </Switch>
             </div>

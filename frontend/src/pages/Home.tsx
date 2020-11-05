@@ -6,7 +6,7 @@ const Home: React.FC = () => {
     return (
         <section className="flex-grow flex justify-around overflow-y-auto">
             <ClassificationTable />
-            <MatchesCarrousel />
+            <MatchesCarrousel type="READ" />
         </section>
     );
 };

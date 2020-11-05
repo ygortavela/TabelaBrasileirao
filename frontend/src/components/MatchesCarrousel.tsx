@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { getMatchesByRoundList } from '../services/services';
+import { useDispatch, useSelector } from 'react-redux';
 import MatchesByRound from './MatchesByRound';
+import { RootState } from '../store/reducer';
+import fetchMatchesByRound from '../store/matches/fetchMatchesByRound';
 
-const MatchesByRoundCarrousel: React.FC = () => {
-    const [matchesByRound, setMatchesByRound] = useState<Record<number, Match[]>>({});
+type Props = {
+    type: 'READ' | 'EDIT';
+};
+
+const MatchesByRoundCarrousel: React.FC<Props> = ({ type }) => {
     const [round, setRound] = useState(1);
-
-    async function getMatchesByRound() {
-        try {
-            const response = await getMatchesByRoundList();
-            setMatchesByRound(response.data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const matchesByRound = useSelector((state: RootState) => state.matchState.matchesByRound);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getMatchesByRound();
-    }, []);
+        dispatch(fetchMatchesByRound());
+    }, [dispatch]);
 
     return (
-        <div className="m-4 w-1/3 flex flex-col">
-            <p className="text-2xl font-black mb-4">JOGOS</p>
-            <div className="flex justify-around items-center py-2 border-t border-b">
+        <div className="m-4 flex flex-col" style={{ width: '400px' }}>
+            {type === 'READ' && <p className="text-2xl font-black mb-4">JOGOS</p>}
+            <div className="flex justify-around items-center py-2">
                 <button
                     className="focus:outline-none"
                     onClick={() => {
@@ -34,7 +32,7 @@ const MatchesByRoundCarrousel: React.FC = () => {
                         <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
                     </svg>
                 </button>
-                <span className="font-bold">{round}ª RODADA</span>
+                <span className="font-bold select-none">{round}ª RODADA</span>
                 <button
                     className="focus:outline-none"
                     onClick={() => {
@@ -51,7 +49,7 @@ const MatchesByRoundCarrousel: React.FC = () => {
                     </svg>
                 </button>
             </div>
-            <MatchesByRound key={round} matchesByRound={matchesByRound[round] ?? []} />
+            <MatchesByRound type={type} key={round} matchesByRound={matchesByRound[round] ?? []} />
         </div>
     );
 };
