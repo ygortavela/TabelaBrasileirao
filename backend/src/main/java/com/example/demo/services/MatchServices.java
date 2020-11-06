@@ -6,6 +6,8 @@ import com.example.demo.repository.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MatchServices {
     @Autowired
@@ -36,6 +38,10 @@ public class MatchServices {
 
     public void deleteMatch(Integer matchId) {
         matchRepository.deleteById(matchId);
+    }
+
+    public List<MatchEntity> findFreeMatchesList() {
+        return matchRepository.findMatchesThatIsNotPlayed();
     }
 }
 

@@ -2,6 +2,7 @@ package com.example.demo.resources;
 
 import com.example.demo.dto.ClassifiedTeamDTO;
 import com.example.demo.dto.MatchDTO;
+import com.example.demo.entity.MatchEntity;
 import com.example.demo.services.SpecializedServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,5 +25,10 @@ public class SpecializedResource {
     public @ResponseBody
     Map<Integer, List<MatchDTO>> getMatchesByRound() {
         return classificationServices.getMatchesByRound();
+    }
+
+    @GetMapping(path="/free-matches")
+    public @ResponseBody List<MatchEntity> getFreeMatchesList() {
+        return classificationServices.getFreeMatchesList();
     }
 }

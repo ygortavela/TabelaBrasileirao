@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.dto.ClassifiedTeamDTO;
 import com.example.demo.dto.MatchDTO;
+import com.example.demo.entity.MatchEntity;
 import com.example.demo.utils.ClassifiedTeamsTableBuilder;
 import com.example.demo.utils.MatchesByRoundMapBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import java.util.Map;
 public class SpecializedServices {
     @Autowired
     private PlayMatchServices playMatchServices;
+
+    @Autowired
+    private MatchServices matchServices;
 
     public Map<Integer, List<MatchDTO>> getMatchesByRound() {
         MatchesByRoundMapBuilder matchesByRoundMapBuilder = new MatchesByRoundMapBuilder(playMatchServices.findAllPlayedMatches());
@@ -38,5 +42,9 @@ public class SpecializedServices {
         classificationTable.setDerivedFieldsForEachClassifiedTeam();
 
         return classificationTable;
+    }
+
+    public List<MatchEntity> getFreeMatchesList() {
+        return matchServices.findFreeMatchesList();
     }
 }
