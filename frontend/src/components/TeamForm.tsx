@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTeam, removeTeam, selectTeam, toggleFormType } from '../store/teams/actions';
 
@@ -47,6 +47,10 @@ const TeamForm: React.FC<Props> = (props) => {
         }
     };
 
+    useEffect(() => {
+        dispatch(toggleFormType());
+    }, [dispatch]);
+
     if (!props.type) return null;
 
     return (
@@ -88,14 +92,14 @@ const TeamForm: React.FC<Props> = (props) => {
             </div>
             <div className="flex justify-center">
                 <button
-                    className="self-center m-3 px-4 py-2 rounded-md text-xl font-black text-green-200 hover:text-white bg-green-500 transform hover:scale-105 hover:font-black"
+                    className="self-center m-3 px-4 py-2 rounded-md text-xl font-black text-green-200 hover:text-white bg-green-500 transform hover:scale-105 hover:font-black shadow-md"
                     type="submit"
                 >
                     Enviar
                 </button>
                 {props.type === 'EDIT' && (
                     <button
-                        className="self-center m-3 px-4 py-2 rounded-md text-lg font-black text-red-500 border-2 border-red-400 bg-gray-100 hover:bg-red-300 hover:text-white"
+                        className="self-center m-3 px-4 py-2 rounded-md text-lg font-black text-red-500 border-2 border-red-400 bg-gray-100 hover:bg-red-300 hover:text-white shadow-md"
                         type="button"
                         onClick={handleDelete}
                     >

@@ -15,8 +15,8 @@ const MatchesList: React.FC = () => {
                 matchDateTime: [],
                 matchPlace: '',
                 teamsThatPlayedMatchList: [
-                    { teamId: 0, name: '', initials: '' },
-                    { teamId: 0, name: '', initials: '' },
+                    { teamId: 0, name: '', initials: '', goalAmount: 0, yellowCardAmount: 0, redCardAmount: 0 },
+                    { teamId: 0, name: '', initials: '', goalAmount: 0, yellowCardAmount: 0, redCardAmount: 0 },
                 ],
             }),
         );
@@ -28,7 +28,7 @@ const MatchesList: React.FC = () => {
                 <MatchesCarrousel type="EDIT" />
             </div>
             <button
-                className="self-center m-2 px-4 py-2 rounded-md text-lg font-black text-green-200 hover:text-white bg-green-500 transform hover:scale-105 hover:font-black"
+                className="self-center m-2 px-4 py-2 rounded-md text-lg font-black text-green-200 hover:text-white bg-green-500 transform hover:scale-105 hover:font-black shadow-md"
                 onClick={handleMatchCreate}
             >
                 Criar Partida

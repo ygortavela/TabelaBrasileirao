@@ -11,7 +11,7 @@ const TeamsList: React.FC = () => {
 
     const handleTeamCreate = () => {
         dispatch(toggleFormType('CREATE'));
-        dispatch(selectTeam({ teamId: -1, name: '', initials: '' }));
+        dispatch(selectTeam({ teamId: 0, name: '', initials: '' }));
     };
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const TeamsList: React.FC = () => {
                 </ul>
             </div>
             <button
-                className="self-center m-3 px-4 py-2 rounded-md text-lg font-black text-green-200 hover:text-white bg-green-500 transform hover:scale-105 hover:font-black"
+                className="self-center m-3 px-4 py-2 rounded-md text-lg font-black text-green-200 hover:text-white bg-green-500 transform hover:scale-105 hover:font-black shadow-md"
                 onClick={handleTeamCreate}
             >
                 Criar Time

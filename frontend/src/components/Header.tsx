@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { toggleFormType as toggleTeamFormType } from '../store/teams/actions';
+import { toggleFormType as toggleMatchFormType } from '../store/matches/actions';
 
 import './Header.css';
 
@@ -7,6 +10,7 @@ const Header: React.FC = () => {
     const [selected, setSelected] = useState('classification');
     const [toggleDropdown, setToggleDropdown] = useState(false);
     const { pathname } = useLocation();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (pathname !== '/') setSelected('management');
@@ -44,6 +48,7 @@ const Header: React.FC = () => {
                                 onClick={() => {
                                     setSelected('management');
                                     setToggleDropdown(false);
+                                    dispatch(toggleTeamFormType());
                                 }}
                                 to="/management/teams"
                                 className="block px-4 py-2 text-gray-800 hover:bg-green-500 hover:text-white"
@@ -54,6 +59,7 @@ const Header: React.FC = () => {
                                 onClick={() => {
                                     setSelected('management');
                                     setToggleDropdown(false);
+                                    dispatch(toggleMatchFormType());
                                 }}
                                 to="/management/matches"
                                 className="block px-4 py-2 text-gray-800 hover:bg-green-500 hover:text-white"

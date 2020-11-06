@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { selectMatch, toggleFormType } from '../store/matches/actions';
+import _ from 'lodash';
+
+import formatDate from '../utils/formatDate';
 
 type Props = {
     match: Match;
@@ -9,20 +12,12 @@ type Props = {
 
 const MatchItem: React.FC<Props> = ({ match, type }) => {
     const dispatch = useDispatch();
-    const [date] = useState(
-        new Date(
-            match.matchDateTime[0],
-            match.matchDateTime[1] - 1,
-            match.matchDateTime[2],
-            match.matchDateTime[3],
-            match.matchDateTime[4],
-        ),
-    );
-    const WEEKDAY = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
+    const date = formatDate(match.matchDateTime);
+
     const handleMatchEdit = () => {
         if (type === 'EDIT') {
             dispatch(toggleFormType('EDIT'));
-            dispatch(selectMatch(match));
+            dispatch(selectMatch(_.cloneDeep(match)));
         }
     };
 
@@ -37,10 +32,8 @@ const MatchItem: React.FC<Props> = ({ match, type }) => {
             onClick={handleMatchEdit}
         >
             <div className="text-sm">
-                <span className="font-bold">
-                    {`${WEEKDAY[date.getDay()]} ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} `}
-                </span>
-                <span>{`${match.matchPlace} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`}</span>
+                <span className="font-bold">{`${date[0]} ${date[1]} `}</span>
+                <span>{`${match.matchPlace} ${date[2]}`}</span>
             </div>
             <div className="text-xl flex items-center mt-3">
                 <span title={match.teamsThatPlayedMatchList![0].name}>
