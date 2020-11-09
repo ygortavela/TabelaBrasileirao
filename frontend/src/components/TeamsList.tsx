@@ -31,6 +31,7 @@ const TeamsList: React.FC = () => {
                 </ul>
             </div>
             <button
+                id="button__create-team"
                 className="self-center m-3 px-4 py-2 rounded-md text-lg font-black text-green-200 hover:text-white bg-green-500 transform hover:scale-105 hover:font-black shadow-md"
                 onClick={handleTeamCreate}
             >

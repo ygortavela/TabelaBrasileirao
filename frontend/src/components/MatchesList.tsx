@@ -28,6 +28,7 @@ const MatchesList: React.FC = () => {
                 <MatchesCarrousel type="EDIT" />
             </div>
             <button
+                id="button__create-match"
                 className="self-center m-2 px-4 py-2 rounded-md text-lg font-black text-green-200 hover:text-white bg-green-500 transform hover:scale-105 hover:font-black shadow-md"
                 onClick={handleMatchCreate}
             >
