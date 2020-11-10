@@ -11,6 +11,9 @@ public class TeamServices {
     @Autowired
     private TeamRepository teamRepository;
 
+    @Autowired
+    private PlayMatchServices playMatchServices;
+
     public Iterable<TeamEntity> findAllTeams() {
         return teamRepository.findAll();
     }
@@ -36,6 +39,7 @@ public class TeamServices {
     }
 
     public void deleteTeam(Integer teamId) {
+        playMatchServices.deletePlayedMatchesByMatchId(teamId);
         teamRepository.deleteById(teamId);
     }
 }

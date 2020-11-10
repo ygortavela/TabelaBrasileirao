@@ -69,8 +69,20 @@ public class PlayMatchServices {
         playMatchRepository.deleteById(playMatchId);
     }
 
+    public void deletePlayedMatchesByMatchId(Integer teamId) {
+        List<PlayMatchEntity> playMatchListByTeamId = playMatchRepository.findPlayedMatchesByTeamId(teamId);
+
+        for (PlayMatchEntity playMatchByTeamId : playMatchListByTeamId) {
+            int matchId = playMatchByTeamId.getMatch().getMatchId();
+            List<PlayMatchEntity> playMatchListByMatchId = playMatchRepository.findPlayedMatchesByMatchId(matchId);
+
+            for (PlayMatchEntity playMatchByMatchId : playMatchListByMatchId)
+                playMatchRepository.deleteById(playMatchByMatchId.getPlayMatchId());
+        }
+    }
+
     private void playMatchValidator(PlayMatchDTO playMatchDTO) {
-        List<PlayMatchEntity> playMatchListByMatchId = playMatchRepository.findTeamsThatPlayMatchByMatchId(playMatchDTO.getMatchId());
+        List<PlayMatchEntity> playMatchListByMatchId = playMatchRepository.findPlayedMatchesByMatchId(playMatchDTO.getMatchId());
         PlayMatchServicesValidator validator = new PlayMatchServicesValidator(playMatchDTO, playMatchListByMatchId);
 
         validator.areTeamsByMatchGreaterThanLimit();
