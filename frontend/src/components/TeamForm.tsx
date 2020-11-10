@@ -4,6 +4,7 @@ import { addTeam, removeTeam, selectTeam, toggleFormType } from '../store/teams/
 
 import { postTeam, replaceTeam, deleteTeam } from '../services/services';
 import { RootState } from '../store/reducer';
+import fetchTeams from '../store/teams/fetchTeams';
 
 type Props = {
     type: 'EDIT' | 'CREATE' | null;
@@ -29,12 +30,13 @@ const TeamForm: React.FC<Props> = (props) => {
                 dispatch(addTeam(response.data));
             } else if (props.type === 'EDIT') {
                 await replaceTeam(selectedTeam);
+                dispatch(fetchTeams());
             }
+
+            dispatch(toggleFormType());
         } catch (error) {
             console.log(error);
         }
-
-        dispatch(toggleFormType());
     };
 
     const handleDelete = async () => {
