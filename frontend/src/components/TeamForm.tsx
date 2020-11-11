@@ -26,8 +26,8 @@ const TeamForm: React.FC<Props> = (props) => {
 
         try {
             if (props.type === 'CREATE') {
-                const response = await postTeam(selectedTeam);
-                dispatch(addTeam(response.data));
+                await postTeam(selectedTeam);
+                dispatch(addTeam(selectedTeam));
             } else if (props.type === 'EDIT') {
                 await replaceTeam(selectedTeam);
                 dispatch(fetchTeams());
